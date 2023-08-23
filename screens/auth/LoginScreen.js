@@ -19,7 +19,7 @@ import InternetConnectionAlert from "react-native-internet-connection-alert";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isloading, setIsloading] = useState(false);
@@ -34,40 +34,25 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({
-    email: email,
-    password: password,
-  });
-
-  var requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
   //method to validate the user credentials and navigate to Home Screen / Dashboard
   const loginHandle = () => {
     setIsloading(true);
     //[check validation] -- Start
-    // if email does not contain @ sign
-    if (email == "") {
+    // if username does not contain @ sign
+    if (username == "") {
       setIsloading(false);
-      return setError("Please enter your email");
+      return setError("Please enter your username");
     }
     if (password == "") {
       setIsloading(false);
       return setError("Please enter your password");
     }
-    if (!email.includes("@")) {
+    if (!username.includes("@")) {
       setIsloading(false);
       return setError("Email is not valid");
     }
-    // length of email must be greater than 5 characters
-    if (email.length < 6) {
+    // length of username must be greater than 5 characters
+    if (username.length < 6) {
       setIsloading(false);
       return setError("Email is too short");
     }
@@ -78,26 +63,23 @@ const LoginScreen = ({ navigation }) => {
     }
     //[check validation] -- End
 
-    fetch(network.serverip + "/login", requestOptions) // API call
+    var formdata = new FormData();
+    formdata.append("username", username);
+    formdata.append("password", password);
+    console.log(formdata);
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+    };
+
+    fetch(network.serverip + "/api/v1/auth/login", requestOptions) // API call
       .then((response) => response.json())
       .then((result) => {
-        if (
-          result.status == 200 ||
-          (result.status == 1 && result.success != false)
-        ) {
-          if (result?.data?.userType == "ADMIN") {
-            //check the user type if the type is ADMIN then navigate to Dashboard else navigate to User Home
-            _storeData(result.data);
-            setIsloading(false);
-            navigation.replace("dashboard", { authUser: result.data }); // naviagte to Admin Dashboard
-          } else {
-            _storeData(result.data);
-            setIsloading(false);
-            navigation.replace("tab", { user: result.data }); // naviagte to User Dashboard
-          }
-        } else {
+        console.log(result);
+        if (result) {
+          _storeData(result);
           setIsloading(false);
-          return setError(result.message);
+          navigation.replace("tab", { user: result.data }); // naviagte to Admin Dashboard
         }
       })
       .catch((error) => {
@@ -108,10 +90,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <InternetConnectionAlert onChange={(connectionState) => {}}>
-      <KeyboardAvoidingView
-        // behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-      >
+      <KeyboardAvoidingView style={styles.container}>
         <ScrollView style={{ flex: 1, width: "100%" }}>
           <ProgressDialog visible={isloading} label={"Login ..."} />
           <StatusBar></StatusBar>
@@ -132,8 +111,8 @@ const LoginScreen = ({ navigation }) => {
           <View style={styles.formContainer}>
             <CustomAlert message={error} type={"error"} />
             <CustomInput
-              value={email}
-              setValue={setEmail}
+              value={username}
+              setValue={setUsername}
               placeholder={"Username"}
               placeholderTextColor={colors.muted}
               radius={5}

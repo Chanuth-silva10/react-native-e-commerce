@@ -1,3 +1,3 @@
 export default network = {
-  serverip: "https://ecommerce-mob-app.onrender.com",
+  serverip: "https://kkkkkkkkkk-uzap.onrender.com",
 };

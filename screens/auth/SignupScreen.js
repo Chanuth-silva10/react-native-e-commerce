@@ -21,7 +21,7 @@ const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [error, setError] = useState("");
 
   var myHeaders = new Headers();
@@ -30,7 +30,7 @@ const SignupScreen = ({ navigation }) => {
   var raw = JSON.stringify({
     email: email,
     password: password,
-    name: name,
+    username: username,
     userType: "USER",
   });
 
@@ -46,7 +46,7 @@ const SignupScreen = ({ navigation }) => {
     if (email == "") {
       return setError("Please enter your email");
     }
-    if (name == "") {
+    if (username == "") {
       return setError("Please enter your name");
     }
     if (password == "") {
@@ -64,11 +64,11 @@ const SignupScreen = ({ navigation }) => {
     if (password != confirmPassword) {
       return setError("password does not match");
     }
-    fetch(network.serverip + "/register", requestOptions) // API call
+    fetch(network.serverip + "/api/v1/users/create", requestOptions) // API call
       .then((response) => response.json())
       .then((result) => {
         console.log(result);
-        if (result.data["email"] == email) {
+        if (result["email"] == email) {
           navigation.navigate("login");
         }
       })
@@ -113,7 +113,7 @@ const SignupScreen = ({ navigation }) => {
           <View style={styles.formContainer}>
             <CustomAlert message={error} type={"error"} />
             <CustomInput
-              value={name}
+              value={username}
               setValue={setName}
               placeholder={"Name"}
               placeholderTextColor={colors.muted}
