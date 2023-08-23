@@ -48,12 +48,6 @@ const UserProfileScreen = ({ navigation, route }) => {
       </View>
       <View style={styles.OptionsContainer}>
         <OptionList
-          text={"My Account"}
-          Icon={Ionicons}
-          iconName={"person"}
-          onPress={() => navigation.navigate("myaccount", { user: userInfo })}
-        />
-        <OptionList
           text={"Logout"}
           Icon={Ionicons}
           iconName={"log-out"}
