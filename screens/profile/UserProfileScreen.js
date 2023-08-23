@@ -15,7 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const UserProfileScreen = ({ navigation, route }) => {
   const [userInfo, setUserInfo] = useState({});
   const { user } = route.params;
-
+  console.log(user)
   const convertToJSON = (obj) => {
     try {
       setUserInfo(JSON.parse(obj));
@@ -47,6 +47,32 @@ const UserProfileScreen = ({ navigation, route }) => {
         />
       </View>
       <View style={styles.OptionsContainer}>
+        <OptionList
+          text={"My Account"}
+          Icon={Ionicons}
+          iconName={"person"}
+          onPress={() => navigation.navigate("myaccount", { user: userInfo })}
+        />
+        <OptionList
+          text={"Wishlist"}
+          Icon={Ionicons}
+          iconName={"heart"}
+          onPress={() => navigation.navigate("mywishlist", { user: userInfo })}
+        />
+        {/* !For future use --- */}
+        {/* <OptionList
+          text={"Settings"}
+          Icon={Ionicons}
+          iconName={"settings-sharp"}
+          onPress={() => console.log("working....")}
+        />
+        <OptionList
+          text={"Help Center"}
+          Icon={Ionicons}
+          iconName={"help-circle"}
+          onPress={() => console.log("working....")}
+        /> */}
+        {/* !For future use ---- End */}
         <OptionList
           text={"Logout"}
           Icon={Ionicons}

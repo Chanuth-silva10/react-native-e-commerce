@@ -75,7 +75,6 @@ const LoginScreen = ({ navigation }) => {
     fetch(network.serverip + "/api/v1/auth/login", requestOptions) // API call
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result) {
           _storeData(result);
           setIsloading(false);
