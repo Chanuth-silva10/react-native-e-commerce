@@ -105,8 +105,7 @@ const SignupScreen = ({ navigation }) => {
             </View>
             <View>
               <Text style={styles.screenNameParagraph}>
-                Create your account on EasyBuy to get an access to millions of
-                products
+                Create your account on MindRelax to get an your prediction
               </Text>
             </View>
           </View>

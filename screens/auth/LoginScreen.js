@@ -95,9 +95,9 @@ const LoginScreen = ({ navigation }) => {
           <StatusBar></StatusBar>
           <View style={styles.welconeContainer}>
             <View>
-              <Text style={styles.welcomeText}>Welcome to EasyBuy</Text>
+              <Text style={styles.welcomeText}>MindRelax</Text>
               <Text style={styles.welcomeParagraph}>
-                make your ecommerce easy
+                predict your emotion level
               </Text>
             </View>
             <View>

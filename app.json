@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "EasyBuy",
-    "slug": "EasyBuy",
+    "name": "MindRelax",
+    "slug": "MindRelax",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.abidrazaa.EasyBuy",
+      "package": "com.abidrazaa.MindRelax",
       "permissions": ["android.permission.RECORD_AUDIO"]
     },
     "web": {
