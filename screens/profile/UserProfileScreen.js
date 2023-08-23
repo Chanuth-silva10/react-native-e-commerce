@@ -42,8 +42,8 @@ const UserProfileScreen = ({ navigation, route }) => {
       <View style={styles.UserProfileCardContianer}>
         <UserProfileCard
           Icon={Ionicons}
-          name={userInfo?.name}
-          email={userInfo?.email}
+          name={userInfo?.user.username}
+          email={userInfo?.user.email}
         />
       </View>
       <View style={styles.OptionsContainer}>

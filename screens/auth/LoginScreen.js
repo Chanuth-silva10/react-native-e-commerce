@@ -79,7 +79,7 @@ const LoginScreen = ({ navigation }) => {
         if (result) {
           _storeData(result);
           setIsloading(false);
-          navigation.replace("tab", { user: result.data }); // naviagte to Admin Dashboard
+          navigation.replace("tab", { user: result }); // naviagte to Admin Dashboard
         }
       })
       .catch((error) => {
