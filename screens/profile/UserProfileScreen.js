@@ -54,26 +54,6 @@ const UserProfileScreen = ({ navigation, route }) => {
           onPress={() => navigation.navigate("myaccount", { user: userInfo })}
         />
         <OptionList
-          text={"Wishlist"}
-          Icon={Ionicons}
-          iconName={"heart"}
-          onPress={() => navigation.navigate("mywishlist", { user: userInfo })}
-        />
-        {/* !For future use --- */}
-        {/* <OptionList
-          text={"Settings"}
-          Icon={Ionicons}
-          iconName={"settings-sharp"}
-          onPress={() => console.log("working....")}
-        />
-        <OptionList
-          text={"Help Center"}
-          Icon={Ionicons}
-          iconName={"help-circle"}
-          onPress={() => console.log("working....")}
-        /> */}
-        {/* !For future use ---- End */}
-        <OptionList
           text={"Logout"}
           Icon={Ionicons}
           iconName={"log-out"}
