@@ -12,26 +12,21 @@ import { colors, network } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import ProgressDialog from "react-native-progress-dialog";
-import OrderList from "../../components/OrderList/OrderList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MyOrderScreen = ({ navigation, route }) => {
   const { user } = route.params;
   const [isloading, setIsloading] = useState(false);
   const [label, setLabel] = useState("Please wait...");
-  const [refeshing, setRefreshing] = useState(false);
   const [alertType, setAlertType] = useState("error");
   const [error, setError] = useState("");
-  const [orders, setOrders] = useState([]);
   const [UserInfo, setUserInfo] = useState({});
 
-  //method to remove the authUser from aysnc storage and navigate to login
   const logout = async () => {
     await AsyncStorage.removeItem("authUser");
     navigation.replace("login");
   };
 
-  //method to convert the authUser to json object
   const convertToJSON = (obj) => {
     try {
       setUserInfo(JSON.parse(obj));
@@ -40,7 +35,6 @@ const MyOrderScreen = ({ navigation, route }) => {
     }
   };
 
-  //method to convert the authUser to json object and return token
   const getToken = (obj) => {
     try {
       setUserInfo(JSON.parse(obj));
@@ -51,56 +45,8 @@ const MyOrderScreen = ({ navigation, route }) => {
     return UserInfo.token;
   };
 
-  //method call on pull refresh
-  const handleOnRefresh = () => {
-    setRefreshing(true);
-    fetchOrders();
-    setRefreshing(false);
-  };
-
-  //method to navigate to order detail screen of a specific order
-  const handleOrderDetail = (item) => {
-    navigation.navigate("myorderdetail", {
-      orderDetail: item,
-      Token: UserInfo.token,
-    });
-  };
-
-  //fetch order from server using API call
-  const fetchOrders = () => {
-    var myHeaders = new Headers();
-    let token = getToken(user);
-    myHeaders.append("x-auth-token", token);
-
-    var requestOptions = {
-      method: "GET",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    setIsloading(true);
-    fetch(`${network.serverip}/orders`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        if (result?.err === "jwt expired") {
-          logout();
-        }
-        if (result.success) {
-          setOrders(result.data);
-          setError("");
-        }
-        setIsloading(false);
-      })
-      .catch((error) => {
-        setIsloading(false);
-        setError(error.message);
-        console.log("error", error);
-      });
-  };
-
-  //convert authUser to Json object and fetch orders on initial render
   useEffect(() => {
     convertToJSON(user);
-    fetchOrders();
   }, []);
 
   return (
@@ -120,50 +66,22 @@ const MyOrderScreen = ({ navigation, route }) => {
           />
         </TouchableOpacity>
         <View></View>
-        <TouchableOpacity onPress={() => handleOnRefresh()}>
-          <Ionicons name="cart-outline" size={30} color={colors.primary} />
+        <TouchableOpacity>
+          <Ionicons name="person-circle" size={30} color={colors.primary} />
         </TouchableOpacity>
       </View>
       <View style={styles.screenNameContainer}>
         <View>
-          <Text style={styles.screenNameText}>My Orders</Text>
+          <Text style={styles.screenNameText}>Voice Emotion</Text>
         </View>
         <View>
           <Text style={styles.screenNameParagraph}>
-            Your order and your order status
+            Voice Section
           </Text>
         </View>
       </View>
       <CustomAlert message={error} type={alertType} />
-      {orders.length == 0 ? (
-        <View style={styles.ListContiainerEmpty}>
-          <Text style={styles.secondaryTextSmItalic}>
-            "There are no orders placed yet."
-          </Text>
-        </View>
-      ) : (
-        <ScrollView
-          style={{ flex: 1, width: "100%", padding: 20 }}
-          showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={refeshing}
-              onRefresh={handleOnRefresh}
-            />
-          }
-        >
-          {orders.map((order, index) => {
-            return (
-              <OrderList
-                item={order}
-                key={index}
-                onPress={() => handleOrderDetail(order)}
-              />
-            );
-          })}
-          <View style={styles.emptyView}></View>
-        </ScrollView>
-      )}
+      
     </View>
   );
 };

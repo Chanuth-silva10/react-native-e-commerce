@@ -42,8 +42,8 @@ const UserProfileScreen = ({ navigation, route }) => {
       <View style={styles.UserProfileCardContianer}>
         <UserProfileCard
           Icon={Ionicons}
-          name={userInfo?.user.username}
-          email={userInfo?.user.email}
+          name={userInfo?.user}
+          email={userInfo?.user}
         />
       </View>
       <View style={styles.OptionsContainer}>
@@ -59,20 +59,6 @@ const UserProfileScreen = ({ navigation, route }) => {
           iconName={"heart"}
           onPress={() => navigation.navigate("mywishlist", { user: userInfo })}
         />
-        {/* !For future use --- */}
-        {/* <OptionList
-          text={"Settings"}
-          Icon={Ionicons}
-          iconName={"settings-sharp"}
-          onPress={() => console.log("working....")}
-        />
-        <OptionList
-          text={"Help Center"}
-          Icon={Ionicons}
-          iconName={"help-circle"}
-          onPress={() => console.log("working....")}
-        /> */}
-        {/* !For future use ---- End */}
         <OptionList
           text={"Logout"}
           Icon={Ionicons}
