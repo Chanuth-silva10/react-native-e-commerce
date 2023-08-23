@@ -14,7 +14,7 @@ import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import ProgressDialog from "react-native-progress-dialog";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const MyOrderScreen = ({ navigation, route }) => {
+const VoiceEmotionScreen = ({ navigation, route }) => {
   const { user } = route.params;
   const [isloading, setIsloading] = useState(false);
   const [label, setLabel] = useState("Please wait...");
@@ -67,7 +67,7 @@ const MyOrderScreen = ({ navigation, route }) => {
         </TouchableOpacity>
         <View></View>
         <TouchableOpacity>
-          <Ionicons name="person-circle" size={30} color={colors.primary} />
+          <Ionicons name="person-sharp" size={30} color={colors.primary} />
         </TouchableOpacity>
       </View>
       <View style={styles.screenNameContainer}>
@@ -86,7 +86,7 @@ const MyOrderScreen = ({ navigation, route }) => {
   );
 };
 
-export default MyOrderScreen;
+export default VoiceEmotionScreen;
 
 const styles = StyleSheet.create({
   container: {

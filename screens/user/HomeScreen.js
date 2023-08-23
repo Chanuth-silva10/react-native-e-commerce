@@ -16,7 +16,6 @@ import { SliderBox } from "react-native-image-slider-box";
 
 const slides = [
   require("../../assets/image/banners/banner.png"),
-  require("../../assets/image/banners/banner.png"),
 ];
 
 const HomeScreen = ({ navigation, route }) => {

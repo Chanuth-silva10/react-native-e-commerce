@@ -8,13 +8,13 @@ import {
   RefreshControl,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { colors, network } from "../../constants";
+import { colors } from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import CustomAlert from "../../components/CustomAlert/CustomAlert";
 import ProgressDialog from "react-native-progress-dialog";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const MyOrderScreen = ({ navigation, route }) => {
+const HeartStressScreen = ({ navigation, route }) => {
   const { user } = route.params;
   const [isloading, setIsloading] = useState(false);
   const [label, setLabel] = useState("Please wait...");
@@ -67,16 +67,16 @@ const MyOrderScreen = ({ navigation, route }) => {
         </TouchableOpacity>
         <View></View>
         <TouchableOpacity>
-          <Ionicons name="person-circle" size={30} color={colors.primary} />
+          <Ionicons name="person-sharp" size={30} color={colors.primary} />
         </TouchableOpacity>
       </View>
       <View style={styles.screenNameContainer}>
         <View>
-          <Text style={styles.screenNameText}>Voice Emotion</Text>
+          <Text style={styles.screenNameText}>Heart Beat Stress</Text>
         </View>
         <View>
           <Text style={styles.screenNameParagraph}>
-            Voice Section
+            Heart Stress
           </Text>
         </View>
       </View>
@@ -86,7 +86,7 @@ const MyOrderScreen = ({ navigation, route }) => {
   );
 };
 
-export default MyOrderScreen;
+export default HeartStressScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -4,9 +4,10 @@ import SignupScreen from "../screens/auth/SignupScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Splash from "../screens/auth/Splash";
 import Tabs from "./tabs/Tabs";
-import CheckoutScreen from "../screens/user/CheckoutScreen.js";
-import MyOrderScreen from "../screens/user/MyOrderScreen";
-import CategoriesScreen from "../screens/user/CategoriesScreen";
+import VoiceEmotionScreen from "../screens/user/VoiceEmotionScreen";
+import TextEmotionScreen from "../screens/user/TextEmotionScreen";
+import FaceEmotionScreen from "../screens/user/FaceEmotionScreen";
+import HeartStressScreen from "../screens/user/HeartStressScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +22,10 @@ const Routes = () => {
         <Stack.Screen name="login" component={LoginScreen} />
         <Stack.Screen name="signup" component={SignupScreen} />
         <Stack.Screen name="tab" component={Tabs} />
-        <Stack.Screen name="checkout" component={CheckoutScreen} />
-        <Stack.Screen name="myorder" component={MyOrderScreen} />
-        <Stack.Screen name="categories" component={CategoriesScreen} />
+        <Stack.Screen name="voiceemotion" component={VoiceEmotionScreen} />
+        <Stack.Screen name="textemotion" component={TextEmotionScreen} />
+        <Stack.Screen name="FaceEmotion" component={FaceEmotionScreen} />
+        <Stack.Screen name="HeartStress" component={HeartStressScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
