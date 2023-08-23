@@ -24,9 +24,8 @@ const UserProfileScreen = ({ navigation, route }) => {
     }
   };
 
-  // covert  the user to Json object on initial render
   useEffect(() => {
-    convertToJSON(user);
+    
   }, []);
   return (
     <View style={styles.container}>
@@ -53,12 +52,7 @@ const UserProfileScreen = ({ navigation, route }) => {
           iconName={"person"}
           onPress={() => navigation.navigate("myaccount", { user: userInfo })}
         />
-        <OptionList
-          text={"Wishlist"}
-          Icon={Ionicons}
-          iconName={"heart"}
-          onPress={() => navigation.navigate("mywishlist", { user: userInfo })}
-        />
+        
         <OptionList
           text={"Logout"}
           Icon={Ionicons}
