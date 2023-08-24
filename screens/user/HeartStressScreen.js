@@ -29,7 +29,7 @@ const HeartStressScreen = ({ navigation, route }) => {
 
   const convertToJSON = (obj) => {
     try {
-      setUserInfo(JSON.parse(obj));
+      setUserInfo(obj);
     } catch (e) {
       setUserInfo(obj);
     }

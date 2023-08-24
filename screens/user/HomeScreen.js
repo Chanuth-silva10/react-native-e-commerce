@@ -21,11 +21,12 @@ const slides = [
 const HomeScreen = ({ navigation, route }) => {
 
   const { user } = route.params;
+  // console.log("Home screen root user value is ",user);
   const [userInfo, setUserInfo] = useState({});
 
   const convertToJSON = (obj) => {
     try {
-      setUserInfo(JSON.parse(obj));
+      setUserInfo(obj);
     } catch (e) {
       setUserInfo(obj);
     }
@@ -33,6 +34,7 @@ const HomeScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     convertToJSON(user);
+    // console.log("Home screen useeffect user value is",userInfo)
   }, []);
 
   return (
@@ -48,7 +50,7 @@ const HomeScreen = ({ navigation, route }) => {
         </View>
         <TouchableOpacity
           style={styles.cartIconContainer}
-          // onPress={}
+          onPress={() => navigation.navigate("UserProfile", { user: user })}
         >
           <Image source={cartIcon} />
         </TouchableOpacity>

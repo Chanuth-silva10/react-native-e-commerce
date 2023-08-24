@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TextEmotionScreen = ({ navigation, route }) => {
   const { user } = route.params;
+  // console.log("Text screen root user value is ",user);
   const [isloading, setIsloading] = useState(false);
   const [label, setLabel] = useState("Please wait...");
   const [alertType, setAlertType] = useState("error");
@@ -29,7 +30,7 @@ const TextEmotionScreen = ({ navigation, route }) => {
 
   const convertToJSON = (obj) => {
     try {
-      setUserInfo(JSON.parse(obj));
+      setUserInfo(obj);
     } catch (e) {
       setUserInfo(obj);
     }
@@ -47,6 +48,7 @@ const TextEmotionScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     convertToJSON(user);
+    // console.log("Text screen useeffect user value is",UserInfo)
   }, []);
 
   return (

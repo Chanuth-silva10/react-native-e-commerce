@@ -8,6 +8,7 @@ import VoiceEmotionScreen from "../screens/user/VoiceEmotionScreen";
 import TextEmotionScreen from "../screens/user/TextEmotionScreen";
 import FaceEmotionScreen from "../screens/user/FaceEmotionScreen";
 import HeartStressScreen from "../screens/user/HeartStressScreen";
+import UserProfileScreen from "../screens/profile/UserProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const Routes = () => {
         <Stack.Screen name="textemotion" component={TextEmotionScreen} />
         <Stack.Screen name="FaceEmotion" component={FaceEmotionScreen} />
         <Stack.Screen name="HeartStress" component={HeartStressScreen} />
+        <Stack.Screen name="UserProfile" component={UserProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

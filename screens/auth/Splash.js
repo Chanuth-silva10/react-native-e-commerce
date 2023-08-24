@@ -11,10 +11,11 @@ const Splash = ({ navigation }) => {
       const value = await AsyncStorage.getItem("authUser");
       if (value !== null) {
         let user = JSON.parse(value);
-        if (user) {
+        console.log("Splash value is ",user);
+        if (user.user.user_type =  "USER") {
           setTimeout(() => {
             navigation.replace("tab", { user: JSON.parse(value) }); 
-          }, 2000);
+          }, 1000);
         }
       } else {
         setTimeout(() => {

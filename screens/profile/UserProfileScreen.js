@@ -14,18 +14,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UserProfileScreen = ({ navigation, route }) => {
   const [userInfo, setUserInfo] = useState({});
+  const [email, setEmail] = useState()
+  const [username, setUsername] = useState({});
   const { user } = route.params;
-  console.log(user)
   const convertToJSON = (obj) => {
     try {
-      setUserInfo(JSON.parse(obj));
+      setUserInfo(obj);
+      setUsername(user.user['username'])
+      setEmail(user.user['email'])
     } catch (e) {
       setUserInfo(obj);
     }
   };
 
   useEffect(() => {
-    
+    convertToJSON(user)
   }, []);
   return (
     <View style={styles.container}>
@@ -41,8 +44,8 @@ const UserProfileScreen = ({ navigation, route }) => {
       <View style={styles.UserProfileCardContianer}>
         <UserProfileCard
           Icon={Ionicons}
-          name={userInfo?.user}
-          email={userInfo?.user}
+          // name={username}
+          // email={email}
         />
       </View>
       <View style={styles.OptionsContainer}>
@@ -50,7 +53,7 @@ const UserProfileScreen = ({ navigation, route }) => {
           text={"My Account"}
           Icon={Ionicons}
           iconName={"person"}
-          onPress={() => navigation.navigate("myaccount", { user: userInfo })}
+          // onPress={() => navigation.navigate("myaccount", { user: userInfo })}
         />
         
         <OptionList
